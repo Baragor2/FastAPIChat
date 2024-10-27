@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fastapichat"
+version = "0.1.0"
+description = "fastapi chat with ddd architecture"
+authors = ["Yauheni Mukhin <evgen3email@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["all"], version = "^0.115.3"}
+uvicorn = {extras = ["all"], version = "^0.32.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+//////////
