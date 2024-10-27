@@ -5,7 +5,7 @@ ENV = --env.file .env
 APP_FILE = docker_compose/app.yaml
 APP_CONTAINER = main-app
 
-.PHONY app
+.PHONY: app
 app:
 	${DC} -f ${APP_FILE} ${ENV} up --build -d
 
