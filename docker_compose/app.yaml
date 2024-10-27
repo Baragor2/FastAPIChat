@@ -1,6 +1,18 @@
-version: '3.9'
+networks:
+  dev:
 
 services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf'
+    depends_on:
+      - main-app
+    networks:
+      - dev
+
   main-app:
     build:
       context: ..
@@ -13,3 +25,5 @@ services:
       - ../.env
     volumes:
       - ..:/app/
+    networks:
+      - dev
