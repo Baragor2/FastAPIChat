@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from domain.exceptions.messages import TextTooLongException
 from domain.values.base import BaseValueObject
 
 
@@ -9,5 +10,5 @@ class Text(BaseValueObject):
 
     def validate(self):
         if len(self.value) > 255:
-            raise TextTooLongException()
+            raise TextTooLongException(self.value)
 
