@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from domain.exceptions.messages import TitleTooLongException, EmptyTextException
 from domain.values.base import BaseValueObject
+from domain.exceptions.message import EmptyTextException, TitleTooLongException
 
 
 @dataclass(frozen=True)

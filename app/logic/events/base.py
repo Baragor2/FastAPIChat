@@ -2,10 +2,10 @@ from abc import ABC
 from dataclasses import dataclass
 from typing import Any, Generic, TypeVar
 
-from domain.events.base import BaseCommand
+from domain.events.base import BaseEvent
 
 
-ET = TypeVar(name='ET', bound=BaseCommand)
+ET = TypeVar(name='ET', bound=BaseEvent)
 ER = TypeVar(name='ER', bound=Any)
 
 

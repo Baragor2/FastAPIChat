@@ -4,8 +4,8 @@ import pytest
 from faker import Faker
 
 from domain.entities.messages import Message, Chat
-from domain.events.messages import NewMessageRecievedEvent
-from domain.exceptions.messages import TitleTooLongException
+from domain.events.messages import NewMessageReceivedEvent
+from domain.exceptions.message import TitleTooLongException
 from domain.values.messages import Text, Title
 
 fake = Faker()
@@ -79,7 +79,7 @@ def test_new_message_events(text: str, title: str) -> None:
 
     new_event = events[0]
 
-    assert isinstance(new_event, NewMessageRecievedEvent), new_event
+    assert isinstance(new_event, NewMessageReceivedEvent), new_event
     assert new_event.message_oid == message.oid
     assert new_event.message_text == message.text.as_generic_type()
     assert new_event.chat_oid == chat.oid
