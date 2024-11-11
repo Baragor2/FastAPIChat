@@ -13,6 +13,7 @@ uvicorn = {extras = ["all"], version = "^0.32.0"}
 pytest = "^8.3.3"
 faker = "^30.8.1"
 pytest-asyncio = "^0.24.0"
+punq = "^0.7.0"
 
 
 [build-system]

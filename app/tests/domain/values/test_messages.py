@@ -83,3 +83,4 @@ def test_new_message_events(text: str, title: str) -> None:
     assert new_event.message_oid == message.oid
     assert new_event.message_text == message.text.as_generic_type()
     assert new_event.chat_oid == chat.oid
+    
