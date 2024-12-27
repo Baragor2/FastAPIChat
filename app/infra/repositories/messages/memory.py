@@ -8,6 +8,14 @@ from infra.repositories.messages.base import BaseChatsRepository
 @dataclass
 class MemoryChatRepository(BaseChatsRepository):
     _saved_chats: list[Chat] = field(default_factory=list, kw_only=True)
+    
+    async def get_chat_by_oid(self, title: str) -> bool:
+        try:
+            return next(
+                chat for chat in self._saved_chats if chat.title.as_generic_type() == title
+            )
+        except StopIteration:
+            return None
 
     async def check_chat_exists_by_title(self, title: str) -> bool:
         try:

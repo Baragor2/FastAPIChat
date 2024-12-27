@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import uuid4
 
 import pytest
 from faker import Faker
@@ -17,7 +18,7 @@ fake = Faker()
 ])
 def test_create_message(text: str) -> None:
     text = Text(text)
-    message = Message(text)
+    message = Message(text=text, chat_oid=str(uuid4()))
 
     assert message.text == text
     assert message.created_at.date() == datetime.today().date()
@@ -50,7 +51,7 @@ def test_create_chat_title_too_long(title: str) -> None:
 ])
 def test_add_message_to_chat(text: str, title: str) -> None:
     text = Text(text)
-    message = Message(text)
+    message = Message(text=text, chat_oid=str(uuid4()))
 
     title = Title(title)
     chat = Chat(title)
@@ -65,7 +66,7 @@ def test_add_message_to_chat(text: str, title: str) -> None:
 ])
 def test_new_message_events(text: str, title: str) -> None:
     text = Text(text)
-    message = Message(text)
+    message = Message(text=text, chat_oid=str(uuid4()))
 
     title = Title(title)
     chat = Chat(title)
