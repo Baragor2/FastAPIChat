@@ -36,18 +36,18 @@ class CreateMessageCommand(BaseCommand):
 
 
 @dataclass(frozen=True)
-class CreateMessageCommandHandler(CommandHandler[CreateMessageCommand, Chat]):
+class CreateMessageCommandHandler(CommandHandler[CreateMessageCommand, Message]):
     message_repository: BaseMessagesRepository
     chats_repository: BaseChatsRepository
 
-    async def handle(self, command: CreateMessageCommand) -> Chat:
+    async def handle(self, command: CreateMessageCommand) -> Message:
         chat = await self.chats_repository.get_chat_by_oid(oid=command.chat_oid)
         
         if not chat:
             raise ChatNotFoundException(chat_oid=command.chat_oid)
 
-        message = Message(text=Text(value=command.text))
+        message = Message(text=Text(value=command.text), chat_oid=command.chat_oid)
         chat.add_message(message)
-        await self.message_repository.add_message(chat_oid=command.chat_oid, message=message)
+        await self.message_repository.add_message(message=message)
 
         return message
