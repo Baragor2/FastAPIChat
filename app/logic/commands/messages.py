@@ -25,6 +25,7 @@ class CreateChatCommandHandler(CommandHandler[CreateChatCommand, Chat]):
         new_chat = Chat.create_chat(title=title)
         # TODO: считать ивенты 
         await self.chats_repository.add_chat(new_chat)
+        await self._mediator.publish(new_chat.pull_events())
 
         return new_chat
 
@@ -49,5 +50,6 @@ class CreateMessageCommandHandler(CommandHandler[CreateMessageCommand, Message])
         message = Message(text=Text(value=command.text), chat_oid=command.chat_oid)
         chat.add_message(message)
         await self.message_repository.add_message(message=message)
+        await self._mediator.publish(chat.pull_events())
 
         return message
